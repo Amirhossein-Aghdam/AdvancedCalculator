@@ -14,12 +14,10 @@ public class ExpressionService {
     public ExpressionService(@Qualifier("RegularExpression") ExpressionDps expressionDps) {
         this.expressionDps = expressionDps;
     }
-
-    public double calculateWithoutVarriables(Expression expression){
-        return expressionDps.calculateWithoutVarriables(expression);
+    public Double evaluate(Expression expression) throws Exception{
+        return expressionDps.evaluate(expression);
     }
-
-    public double calculateWithVarriables(Expression expression){
-        return expressionDps.calculateWithVarriables(expression);
+    public String convert(Expression expression)throws Exception{
+        return expressionDps.convert(expression);
     }
 }

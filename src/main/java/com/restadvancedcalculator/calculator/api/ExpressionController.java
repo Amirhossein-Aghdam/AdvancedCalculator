@@ -3,10 +3,7 @@ package com.restadvancedcalculator.calculator.api;
 import com.restadvancedcalculator.calculator.model.Expression;
 import com.restadvancedcalculator.calculator.service.ExpressionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/expression")
 @RestController
@@ -20,11 +17,21 @@ public class ExpressionController {
     }
 
     @PostMapping
-    public double calculate(@RequestBody Expression expression){
-        if(expression.getHasVarriables()){
-            return expressionService.calculateWithVarriables(expression);
+    public String evaluate(@RequestBody Expression expression) {
+        try {
+            return Double.toString( expressionService.evaluate(expression) );
         }
-        return expressionService.calculateWithoutVarriables(expression);
+        catch(Exception exception){
+            return "Invalid Input.";
+        }
     }
-
+    @PostMapping(path="convert")
+    public String convert(@RequestBody Expression expression) {
+        try {
+            return expressionService.convert(expression);
+        }
+        catch(Exception e){
+            return "Invalid Input.";
+        }
+    }
 }

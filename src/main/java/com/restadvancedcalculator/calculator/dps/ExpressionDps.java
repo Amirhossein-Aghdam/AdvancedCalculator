@@ -4,7 +4,6 @@ import com.restadvancedcalculator.calculator.model.Expression;
 
 public interface ExpressionDps {
 
-    double calculateWithoutVarriables(Expression expression);
-
-    double calculateWithVarriables(Expression expression);
+    double evaluate(Expression expression) throws Exception;
+    String convert(Expression expression) throws Exception;
 }

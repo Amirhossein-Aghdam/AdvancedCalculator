@@ -1,42 +1,43 @@
 package com.restadvancedcalculator.calculator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 public class Expression {
 
-    @NonNull
-    private final String expression;
-    @NonNull
-    private final boolean hasVarriables;
-    private final String[] varriables;
-    private final float[] varriablesValue;
+    private String infix;
+    @Nullable
+    private String postfix;
+    @Nullable
+    private Double value;
 
-    public Expression(@JsonProperty("expression") String expression,
-                      @JsonProperty("hasVarriables") boolean hasVarriables,
-                      @JsonProperty("varriables") String[] varriables,
-                      @JsonProperty("varriablesValue") float[] varriablesValue) {
-
-        this.expression = expression;
-        this.hasVarriables = hasVarriables;
-        this.varriables = varriables;
-        this.varriablesValue = varriablesValue;
+    public Expression(@JsonProperty("infix") String infix){
+        this.infix = infix;
+        this.postfix = postfix;
+        this.value = value;
     }
 
-    @NonNull
-    public String getExpression() {
-        return expression;
+    public String getInfix() {
+        return infix;
     }
 
-    public boolean getHasVarriables() {
-        return hasVarriables;
+    public void setInfix(String infix) {
+        this.infix = infix;
     }
 
-    public String[] getVarriables() {
-        return varriables;
+    public String getPostfix() {
+        return postfix;
     }
 
-    public float[] getVarriablesValue() {
-        return varriablesValue;
+    public void setPostfix(String postfix) {
+        this.postfix = postfix;
+    }
+
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
     }
 }
